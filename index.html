@@ -1,917 +1,1022 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Swayam Gupta - AI Systems Engineer building intelligent systems, full-stack apps, and social-impact solutions.">
-    <meta name="author" content="Swayam Gupta">
-    <meta name="keywords" content="AI Engineer, Machine Learning, Full Stack Developer, RAG, LangChain, React, Python">
-    <meta property="og:title" content="Swayam Gupta | AI Systems Engineer">
-    <meta property="og:type" content="website">
-
-    <title>Swayam Gupta | AI Systems Engineer</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.6);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --primary: #38bdf8;
-            /* Cyan */
-            --secondary: #a855f7;
-            /* Purple */
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --active-role-bg: linear-gradient(90deg, rgba(56, 189, 248, 0.1), transparent);
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-border: rgba(0, 0, 0, 0.1);
-            --primary: #0284c7;
-            --secondary: #7c3aed;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --active-role-bg: linear-gradient(90deg, rgba(2, 132, 199, 0.1), transparent);
-        }
-
-        /* Accessibility Focus Ring */
-        :focus-visible {
-            outline: 2px solid var(--primary);
-            outline-offset: 3px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Scroll Lock for Command Palette */
-        body.palette-open {
-            overflow: hidden;
-        }
-
-        /* --- 1. HERO ANIMATIONS --- */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        /* --- LAYOUT --- */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        header {
-            min-height: 55vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            padding-top: 2rem;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-            min-height: 1.6em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Fixed Cursor Style */
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background-color: var(--primary);
-            margin-left: 4px;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding-bottom: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        section {
-            margin: 2.5rem 0;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary);
-            padding-left: 15px;
-        }
-
-        /* --- CARDS & UI --- */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-            border-color: var(--primary);
-        }
-
-        /* --- TECH RADAR --- */
-        .tech-radar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .radar-category h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .radar-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .radar-tag {
-            font-size: 0.85rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
-            border-radius: 6px;
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-        }
-
-        .radar-tag.highlight {
-            border-color: var(--secondary);
-            color: var(--text-main);
-            background: rgba(168, 85, 247, 0.1);
-        }
-
-        /* --- TIMELINE --- */
-        .timeline {
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
-            padding-left: 1.5rem;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding: 5px;
-            transition: all 0.3s;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.9rem;
-            top: 11px;
-            width: 12px;
-            height: 12px;
-            background: var(--bg-color);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 5px var(--primary);
-        }
-
-        /* Highlight First Item */
-        .timeline-item:first-child {
-            background: var(--active-role-bg);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-            padding-left: 1rem;
-        }
-
-        .timeline-item:first-child::before {
-            background: var(--primary);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        .role-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .role-company {
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-
-        .role-date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* --- COMMAND PALETTE --- */
-        #cmd-palette {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cmd-box {
-            width: 500px;
-            max-width: 90%;
-            background: var(--bg-color);
-            border: 1px solid var(--primary);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
-            animation: fadeIn 0.2s ease;
-        }
-
-        .cmd-header {
-            padding: 15px;
-            border-bottom: 1px solid var(--card-border);
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .cmd-list {
-            list-style: none;
-            padding: 10px;
-        }
-
-        .cmd-item {
-            padding: 12px;
-            cursor: pointer;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-main);
-            transition: 0.2s;
-        }
-
-        .cmd-item:hover,
-        .cmd-item:focus {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--primary);
-            outline: none;
-        }
-
-        .cmd-key {
-            margin-left: auto;
-            font-size: 0.8rem;
-            opacity: 0.5;
-            border: 1px solid var(--text-muted);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* --- PROJECTS --- */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card h3 {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .project-impact {
-            display: block;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .tech-stack {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .tech-badge {
-            font-size: 0.75rem;
-            background: rgba(168, 85, 247, 0.15);
-            color: var(--secondary);
-            padding: 3px 8px;
-            border-radius: 4px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .project-link {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: auto;
-        }
-
-        .compact-list {
-            list-style: none;
-        }
-
-        .compact-item {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .compact-item:last-child {
-            border: none;
-        }
-
-        /* Theme Toggle */
-        .theme-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: var(--text-main);
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .social-btn {
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-btn:hover {
-            color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-
-        .footer-sig {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            opacity: 0.6;
-            margin-top: 0.5rem;
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- PRINT MODE --- */
-        @media print {
-
-            #particles-js,
-            .theme-btn,
-            #cmd-palette,
-            #cmd-hint {
-                display: none !important;
-            }
-
-            body {
-                background: white !important;
-                color: black !important;
-                overflow: visible !important;
-            }
-
-            .container {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
-
-            header {
-                min-height: auto;
-                padding: 2rem 0;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-                background: none;
-                -webkit-text-fill-color: black;
-                color: black;
-                text-shadow: none;
-                animation: none;
-            }
-
-            .card {
-                box-shadow: none !important;
-                border: none !important;
-                border-bottom: 1px solid #ccc !important;
-                border-radius: 0;
-                padding: 1rem 0;
-                break-inside: avoid;
-                background: transparent !important;
-            }
-
-            .project-link {
-                display: none;
-            }
-
-            h2 {
-                border-left-color: black;
-            }
-
-            .timeline-item::before {
-                background: black !important;
-                box-shadow: none;
-            }
-
-            .timeline-item:first-child {
-                background: none;
-                border: none;
-                padding-left: 0;
-            }
-
-            .timeline {
-                border-left: 2px solid #ccc;
-            }
-
-            a {
-                text-decoration: none;
-                color: black !important;
-            }
-
-            .social-btn {
-                font-size: 1rem;
-                border: 1px solid #ccc;
-                width: 30px;
-                height: 30px;
-            }
-
-            .cursor {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                width: 92%;
-            }
-
-            #cmd-hint {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swayam Gupta — AI Systems Engineer</title>
+<meta name="description" content="Swayam Gupta is an AI Systems Engineer at 1Gen building coding agents, RAG pipelines and offline-first full-stack products.">
+<meta name="author" content="Swayam Gupta">
+<meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://swayamgpt.github.io/">
+<meta property="og:title" content="Swayam Gupta — AI Systems Engineer">
+<meta property="og:description" content="Coding agents, RAG pipelines and offline-first products. Selected work, experience and stack.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://swayamgpt.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0b0d'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='700' font-size='28' fill='%2334d3a6'%3ESG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>
+  // Apply saved theme before paint to avoid a flash.
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Swayam Gupta",
+  "jobTitle": "AI Systems Engineer",
+  "worksFor": { "@type": "Organization", "name": "1Gen" },
+  "url": "https://swayamgpt.github.io/",
+  "sameAs": ["https://github.com/SwayamGPT", "https://www.linkedin.com/in/swayam-gupta-1781b7265/"]
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0b0d;
+    --bg-elev: #111317;
+    --surface: #14171c;
+    --surface-2: #1a1e24;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --text: #ececea;
+    --text-2: #a3a7ae;
+    --text-3: #6e737b;
+    --accent: #34d3a6;
+    --accent-ink: #04120d;
+    --accent-soft: rgba(52, 211, 166, 0.12);
+    --warn: #f5b84b;
+    --grid: rgba(255, 255, 255, 0.035);
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -24px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f7f7f4; --bg-elev: #ffffff; --surface: #ffffff; --surface-2: #f1f1ed;
+      --line: rgba(10, 12, 16, 0.09); --line-strong: rgba(10, 12, 16, 0.18);
+      --text: #111316; --text-2: #4b5058; --text-3: #7a7f87;
+      --accent: #0d8a68; --accent-ink: #ffffff; --accent-soft: rgba(13, 138, 104, 0.1);
+      --warn: #a86a00; --grid: rgba(10, 12, 16, 0.045);
+      --shadow: 0 1px 2px rgba(10, 12, 16, 0.04), 0 16px 32px -24px rgba(10, 12, 16, 0.25);
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f7f4; --bg-elev: #ffffff; --surface: #ffffff; --surface-2: #f1f1ed;
+    --line: rgba(10, 12, 16, 0.09); --line-strong: rgba(10, 12, 16, 0.18);
+    --text: #111316; --text-2: #4b5058; --text-3: #7a7f87;
+    --accent: #0d8a68; --accent-ink: #ffffff; --accent-soft: rgba(13, 138, 104, 0.1);
+    --warn: #a86a00; --grid: rgba(10, 12, 16, 0.045);
+    --shadow: 0 1px 2px rgba(10, 12, 16, 0.04), 0 16px 32px -24px rgba(10, 12, 16, 0.25);
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body.locked { overflow: hidden; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  img, svg { display: block; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  .mono { font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+  .skip { position: absolute; left: -999px; top: 8px; z-index: 999; background: var(--accent); color: var(--accent-ink); padding: 8px 12px; border-radius: 8px; }
+  .skip:focus { left: 8px; }
+
+  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  /* Background grid */
+  .bg-grid {
+    position: absolute; inset: 0 0 auto 0; height: 900px; z-index: -1; pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .bg-glow {
+    position: absolute; top: -260px; left: 50%; width: min(900px, 100%); height: 600px; transform: translateX(-50%);
+    background: radial-gradient(closest-side, var(--accent-soft), transparent);
+    z-index: -1; pointer-events: none; filter: blur(20px);
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
+    background: var(--text); color: var(--bg); font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a { padding: 6px 12px; border-radius: 8px; color: var(--text-2); font-size: 14px; transition: color .15s, background .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface-2); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .kbd-btn {
+    display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px 0 12px;
+    border: 1px solid var(--line); border-radius: 9px; color: var(--text-3); font-size: 13px; background: var(--surface);
+    transition: border-color .15s, color .15s;
+  }
+  .kbd-btn:hover { border-color: var(--line-strong); color: var(--text-2); }
+  kbd {
+    font-family: 'Geist Mono', monospace; font-size: 11px; padding: 1px 6px; border-radius: 5px;
+    border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--text-2);
+  }
+  .icon-btn {
+    width: 34px; height: 34px; display: grid; place-items: center; border-radius: 9px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text-2);
+    transition: border-color .15s, color .15s;
+  }
+  .icon-btn:hover { border-color: var(--line-strong); color: var(--text); }
+  .icon-btn svg { width: 16px; height: 16px; }
+  .theme-icon-sun { display: none; }
+  :root[data-theme="light"] .theme-icon-sun { display: block; }
+  :root[data-theme="light"] .theme-icon-moon { display: none; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .theme-icon-sun { display: block; }
+    :root:not([data-theme="dark"]) .theme-icon-moon { display: none; }
+  }
+  @media (max-width: 820px) { .nav-links { display: none; } .kbd-btn .kbd-label { display: none; } }
+
+  /* Hero */
+  .hero { position: relative; padding: 96px 0 72px; overflow: hidden; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 10px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); font-size: 13px; color: var(--text-2);
+  }
+  .pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .pulse::after {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--accent);
+    opacity: 0; animation: ping 2.2s cubic-bezier(0, 0, .2, 1) infinite;
+  }
+  @keyframes ping { 0% { transform: scale(.4); opacity: .8; } 100% { transform: scale(1.4); opacity: 0; } }
+  .hero h1 {
+    margin-top: 28px; font-size: clamp(2.4rem, 6.4vw, 4.6rem); line-height: 1.02; letter-spacing: -0.035em;
+    font-weight: 600; max-width: 15ch;
+  }
+  .hero h1 .serif { font-style: italic; letter-spacing: -0.01em; color: var(--accent); }
+  .hero-sub { margin-top: 24px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-2); max-width: 60ch; }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 11px;
+    font-size: 15px; font-weight: 500; border: 1px solid var(--line-strong); background: var(--surface);
+    transition: transform .15s ease, background .15s, border-color .15s;
+  }
+  .btn:hover { transform: translateY(-1px); border-color: var(--text-3); }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn-primary:hover { border-color: var(--text); opacity: .92; }
+
+  .hero-meta {
+    margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden;
+  }
+  .meta-cell { padding: 20px 22px; border-right: 1px solid var(--line); }
+  .meta-cell:last-child { border-right: 0; }
+  .meta-label { font-size: 12px; color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; font-family: 'Geist Mono', monospace; }
+  .meta-value { margin-top: 6px; font-size: 15px; font-weight: 500; }
+  .meta-value .dim { color: var(--text-3); font-weight: 400; }
+  @media (max-width: 820px) {
+    .hero { padding: 64px 0 48px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .meta-cell:nth-child(2) { border-right: 0; }
+    .meta-cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+
+  /* Sections */
+  section.block { padding: 72px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
+  .eyebrow { font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; }
+  .sec-title { margin-top: 10px; font-size: clamp(1.75rem, 3.4vw, 2.4rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+  .sec-title .serif { font-style: italic; color: var(--text-2); }
+  .sec-desc { color: var(--text-2); max-width: 46ch; font-size: 15px; }
+
+  /* Filters */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    height: 32px; padding: 0 12px; border-radius: 999px; font-size: 13px; color: var(--text-2);
+    border: 1px solid var(--line); background: var(--surface); transition: all .15s;
+  }
+  .chip:hover { color: var(--text); border-color: var(--line-strong); }
+  .chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  /* Featured projects */
+  .featured { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card {
+    position: relative; border: 1px solid var(--line); border-radius: 18px; background: var(--surface);
+    box-shadow: var(--shadow); transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover { border-color: var(--line-strong); }
+  .feature { padding: 28px; display: flex; flex-direction: column; min-height: 340px; overflow: hidden; min-width: 0; }
+  .feature > *, .term { min-width: 0; }
+  .feature.wide { grid-column: span 2; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; min-height: 0; }
+  .feature::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), var(--accent-soft), transparent 60%);
+  }
+  .feature:hover::before { opacity: 1; }
+  .proj-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .proj-kind { font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--text-3); }
+  .proj-links { display: flex; gap: 6px; position: relative; z-index: 1; }
+  .proj-links a {
+    display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px; border-radius: 8px;
+    border: 1px solid var(--line); font-size: 13px; color: var(--text-2); transition: all .15s;
+  }
+  .proj-links a:hover { color: var(--text); border-color: var(--line-strong); background: var(--surface-2); }
+  .proj-links svg { width: 14px; height: 14px; }
+  .feature h3 { margin-top: 18px; font-size: 1.6rem; letter-spacing: -0.025em; font-weight: 600; line-height: 1.2; }
+  .feature .tagline { margin-top: 6px; color: var(--text-2); font-size: 15px; }
+  .points { list-style: none; margin-top: 20px; display: grid; gap: 10px; }
+  .points li { position: relative; padding-left: 20px; color: var(--text-2); font-size: 14.5px; }
+  .points li::before { content: ''; position: absolute; left: 2px; top: .62em; width: 8px; height: 1px; background: var(--accent); }
+  .points strong { color: var(--text); font-weight: 500; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 22px; }
+  .tag {
+    font-family: 'Geist Mono', monospace; font-size: 11.5px; padding: 3px 8px; border-radius: 6px;
+    background: var(--surface-2); color: var(--text-2); border: 1px solid var(--line);
+  }
+
+  /* Terminal mock inside wide feature */
+  .term {
+    border: 1px solid var(--line); border-radius: 12px; background: var(--bg); overflow: hidden; align-self: stretch;
+    font-family: 'Geist Mono', monospace; font-size: 12.5px; line-height: 1.75; display: flex; flex-direction: column;
+  }
+  .term-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); display: block; }
+  .term-bar span { margin-left: 8px; color: var(--text-3); font-size: 11.5px; }
+  .term-body { padding: 14px 16px; color: var(--text-2); white-space: pre; overflow-x: auto; flex: 1; }
+  .t-ok { color: var(--accent); } .t-dim { color: var(--text-3); } .t-warn { color: var(--warn); } .t-hi { color: var(--text); }
+
+  /* Project grid */
+  .more-head { margin: 56px 0 18px; display: flex; align-items: center; gap: 12px; color: var(--text-3); font-size: 13px; }
+  .more-head::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .mini { padding: 22px; display: flex; flex-direction: column; min-height: 220px; }
+  .mini:hover { transform: translateY(-2px); }
+  .mini h4 { font-size: 1.08rem; font-weight: 600; letter-spacing: -0.015em; margin-top: 14px; }
+  .mini p { margin-top: 6px; color: var(--text-2); font-size: 14px; }
+  .mini .arrow { width: 16px; height: 16px; color: var(--text-3); transition: transform .2s, color .2s; }
+  .mini:hover .arrow { transform: translate(2px, -2px); color: var(--text); }
+  .mini .tags { padding-top: 18px; }
+  .mini-link { position: absolute; inset: 0; border-radius: inherit; z-index: 1; }
+  .is-hidden { display: none !important; }
+  @media (max-width: 920px) {
+    .featured { grid-template-columns: 1fr; }
+    .feature.wide { grid-column: auto; grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .feature { padding: 22px; min-height: 0; }
+    .feature h3 { font-size: 1.4rem; }
+  }
+
+  /* Experience */
+  .xp { display: grid; grid-template-columns: 280px 1fr; gap: 48px; }
+  .xp-company { position: sticky; top: 96px; align-self: start; }
+  .co-logo {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-weight: 700;
+    background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); font-family: 'Geist Mono', monospace;
+  }
+  .xp-company h3 { margin-top: 16px; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .xp-company p { color: var(--text-2); font-size: 14px; margin-top: 4px; }
+  .roles { position: relative; }
+  .role { position: relative; padding: 0 0 36px 32px; }
+  .role::before { content: ''; position: absolute; left: 5px; top: 10px; bottom: -10px; width: 1px; background: var(--line-strong); }
+  .role:last-child::before { display: none; }
+  .role::after {
+    content: ''; position: absolute; left: 0; top: 6px; width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg); border: 1.5px solid var(--text-3);
+  }
+  .role.current::after { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .role-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+  .role h4 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
+  .role .org { color: var(--text-2); font-weight: 400; }
+  .role time { font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--text-3); }
+  .role p { color: var(--text-2); font-size: 14.5px; margin-top: 8px; max-width: 62ch; }
+  .badge-now {
+    display: inline-block; margin-left: 8px; font-size: 11px; font-family: 'Geist Mono', monospace; padding: 2px 7px;
+    border-radius: 6px; background: var(--accent-soft); color: var(--accent); vertical-align: 2px;
+  }
+  @media (max-width: 820px) { .xp { grid-template-columns: 1fr; gap: 28px; } .xp-company { position: static; } }
+
+  /* Stack */
+  .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stack-col { padding: 22px; }
+  .stack-col h4 { font-size: 13px; font-family: 'Geist Mono', monospace; color: var(--text-3); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+  .stack-col ul { list-style: none; margin-top: 14px; display: grid; gap: 8px; }
+  .stack-col li { font-size: 14.5px; display: flex; justify-content: space-between; gap: 8px; }
+  .stack-col li span { color: var(--text-3); font-size: 12.5px; }
+  @media (max-width: 920px) { .stack { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .stack { grid-template-columns: 1fr; } }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; }
+  .about-main { padding: 32px; }
+  .about-main p { color: var(--text-2); font-size: 16px; }
+  .about-main p + p { margin-top: 14px; }
+  .about-main strong { color: var(--text); font-weight: 500; }
+  .about-side { display: grid; gap: 14px; }
+  .info { padding: 22px; }
+  .info h4 { font-size: 13px; font-family: 'Geist Mono', monospace; color: var(--text-3); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+  .info-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 14.5px; }
+  .info-row span:last-child { color: var(--text-3); text-align: right; }
+  @media (max-width: 820px) { .about { grid-template-columns: 1fr; } .about-main { padding: 24px; } }
+
+  /* Contact */
+  .contact { text-align: center; padding: 96px 0 88px; border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+  .contact h2 { font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: -0.035em; line-height: 1.05; font-weight: 600; }
+  .contact h2 .serif { font-style: italic; color: var(--accent); }
+  .contact p { color: var(--text-2); margin: 18px auto 0; max-width: 48ch; }
+  .contact .cta-row { justify-content: center; }
+  .copy-btn .done { display: none; }
+  .copy-btn.copied .done { display: inline; }
+  .copy-btn.copied .idle { display: none; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--text-3); font-size: 13px; }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .foot-links { display: flex; gap: 16px; }
+  .foot-links a:hover { color: var(--text); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .no-js .reveal { opacity: 1; transform: none; }
+
+  /* Command palette */
+  .palette {
+    position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-start; justify-content: center;
+    padding: 14vh 16px 16px; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .palette.open { display: flex; }
+  .palette-box {
+    width: 100%; max-width: 560px; border-radius: 16px; border: 1px solid var(--line-strong);
+    background: var(--bg-elev); box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); overflow: hidden;
+    animation: pop .16s ease-out;
+  }
+  @keyframes pop { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+  .palette-input { display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+  .palette-input svg { width: 16px; height: 16px; color: var(--text-3); flex: none; }
+  .palette-input input {
+    flex: 1; height: 54px; background: transparent; border: 0; outline: 0; color: var(--text); font: inherit; font-size: 15px;
+  }
+  .palette-input input::placeholder { color: var(--text-3); }
+  .palette-list { list-style: none; max-height: 360px; overflow-y: auto; padding: 8px; }
+  .palette-group { padding: 10px 10px 6px; font-size: 11.5px; color: var(--text-3); font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+  .palette-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 9px; cursor: pointer; font-size: 14.5px; color: var(--text-2);
+  }
+  .palette-item svg { width: 16px; height: 16px; flex: none; }
+  .palette-item .hint { margin-left: auto; font-size: 12px; color: var(--text-3); }
+  .palette-item[aria-selected="true"] { background: var(--surface-2); color: var(--text); }
+  .palette-empty { padding: 28px; text-align: center; color: var(--text-3); font-size: 14px; }
+  .palette-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--text-3); font-size: 12px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  @media print {
+    .nav, .palette, .bg-grid, .bg-glow, .filters, .cta-row, .proj-links, .term { display: none !important; }
+    body { background: #fff; color: #000; }
+    .card { box-shadow: none; border-color: #ccc; break-inside: avoid; }
+    .reveal { opacity: 1; transform: none; }
+    section.block { padding: 24px 0; }
+  }
+</style>
 </head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
 
-<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6 9-6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-6-6 6 6 6-6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="m20 20-4.2-4.2M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5 9h14M5 15h14M10 4 8 20m8-16-2 16"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></g></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></g></symbol>
+</svg>
 
-    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="Swayam Gupta, back to top"><span class="brand-mark">SG</span><span>Swayam Gupta</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="kbd-btn" id="open-palette" aria-label="Open command menu">
+        <svg width="14" height="14"><use href="#i-search"/></svg>
+        <span class="kbd-label">Search</span>
+        <kbd class="mod-key">Ctrl K</kbd>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle color theme">
+        <svg class="theme-icon-moon"><use href="#i-moon"/></svg>
+        <svg class="theme-icon-sun"><use href="#i-sun"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <div id="particles-js"></div>
+<main id="main">
+  <div id="top" class="hero">
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="status reveal"><span class="pulse" aria-hidden="true"></span>AI Systems Engineer at 1Gen</span>
+      <h1 class="reveal">I build AI systems that <span class="serif">actually ship.</span></h1>
+      <p class="hero-sub reveal">
+        Coding agents that test their own output, RAG pipelines you can measure, and offline-first
+        products real businesses run every day. I care about <strong>correctness</strong>, <strong>clear interfaces</strong>,
+        and software that keeps working when the network, the printer or the model doesn't.
+      </p>
+      <div class="cta-row reveal">
+        <a href="#work" class="btn btn-primary">See selected work <svg><use href="#i-down"/></svg></a>
+        <a href="https://github.com/SwayamGPT" class="btn" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>GitHub</a>
+        <a href="https://www.linkedin.com/in/swayam-gupta-1781b7265/" class="btn" target="_blank" rel="noopener"><svg><use href="#i-linkedin"/></svg>LinkedIn</a>
+      </div>
 
-    <div id="cmd-palette" aria-hidden="true">
-        <div class="cmd-box">
-            <div class="cmd-header">
-                <span>Command Palette</span>
-                <span class="cmd-key">ESC</span>
+      <div class="hero-meta reveal" role="list">
+        <div class="meta-cell" role="listitem"><div class="meta-label">Now</div><div class="meta-value">AI Systems Eng. <span class="dim">· 1Gen</span></div></div>
+        <div class="meta-cell" role="listitem"><div class="meta-label">Focus</div><div class="meta-value">Agents · RAG · LLMOps</div></div>
+        <div class="meta-cell" role="listitem"><div class="meta-label">Languages</div><div class="meta-value">Python · TS · Go · R</div></div>
+        <div class="meta-cell" role="listitem"><div class="meta-label">Open source</div><div class="meta-value">20+ public repos</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section class="block" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">01 — Selected work</div>
+          <h2 class="sec-title" id="work-title">Things I've built <span class="serif">recently</span></h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip" aria-pressed="true" data-filter="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="ai">AI & agents</button>
+          <button class="chip" aria-pressed="false" data-filter="product">Products</button>
+          <button class="chip" aria-pressed="false" data-filter="desktop">Desktop</button>
+          <button class="chip" aria-pressed="false" data-filter="data">Data</button>
+        </div>
+      </div>
+
+      <div class="featured">
+        <!-- AutoCode -->
+        <article class="card feature wide reveal" data-tags="ai desktop" id="p-autocode">
+          <div style="display:flex;flex-direction:column">
+            <div class="proj-top">
+              <span class="proj-kind">Multi-agent code generator</span>
+              <div class="proj-links"><a href="https://github.com/SwayamGPT/AutoCode" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Code</a></div>
             </div>
-            <ul class="cmd-list">
-                <li class="cmd-item" tabindex="0" onclick="scrollToSection('projects')">
-                    <i class="fas fa-code"></i> Go to Projects <span class="cmd-key">P</span>
-                </li>
-                <li class="cmd-item" tabindex="0" onclick="scrollToSection('experience')">
-                    <i class="fas fa-briefcase"></i> Experience <span class="cmd-key">E</span>
-                </li>
-                <li class="cmd-item" tabindex="0" onclick="window.open('https://github.com/SwayamGPT', '_blank')">
-                    <i class="fab fa-github"></i> Open GitHub <span class="cmd-key">G</span>
-                </li>
-                <li class="cmd-item" tabindex="0" onclick="toggleTheme()">
-                    <i class="fas fa-adjust"></i> Toggle Theme <span class="cmd-key">T</span>
-                </li>
+            <h3>AutoCode</h3>
+            <p class="tagline">An autonomous, self-verifying coding agent that runs on local or hosted models.</p>
+            <ul class="points">
+              <li>Plans, writes, critiques, patches and <strong>runs the code in a closed loop</strong> until tests pass or a retry limit is hit.</li>
+              <li><strong>Ten reviewer personas</strong> (security, performance, reliability, testing…) score every change against their own plan.</li>
+              <li>Ships as a desktop app, a CLI, an <strong>MCP server</strong> for Claude Code / Cursor, and an <strong>A2A agent</strong> other agents can delegate to.</li>
+              <li>Mix Ollama, vLLM, OpenAI, Anthropic, Gemini, OpenRouter and more per pipeline step.</li>
             </ul>
-        </div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">A2A</span><span class="tag">Ollama</span><span class="tag">React</span><span class="tag">Docker</span></div>
+          </div>
+          <div class="term" aria-hidden="true">
+            <div class="term-bar"><i></i><i></i><i></i><span>autocode — run</span></div>
+<div class="term-body"><span class="t-dim">$</span> <span class="t-hi">python app.py "Build a FastAPI signup endpoint"</span>
+<span class="t-dim">→ context</span>     2 MCP tools loaded
+<span class="t-dim">→ plan</span>        6 files · pytest
+<span class="t-dim">→ build</span>       10 dimension passes
+<span class="t-dim">→ review #1</span>   <span class="t-warn">security 6/10</span> · missing rate limit
+<span class="t-dim">→ patch</span>       app/routes/signup.py <span class="t-ok">+18 −3</span>
+<span class="t-dim">→ validate</span>    pytest <span class="t-ok">14 passed</span>
+<span class="t-dim">→ review #2</span>   <span class="t-ok">all 10 reviewers ≥ 8/10</span>
+<span class="t-ok">✓ done</span> <span class="t-dim">· lesson saved to memory</span></div>
+          </div>
+        </article>
+
+        <!-- Hisaab -->
+        <article class="card feature reveal" data-tags="product desktop">
+          <div class="proj-top">
+            <span class="proj-kind">Offline-first retail ERP</span>
+            <div class="proj-links"><a href="https://github.com/SwayamGPT/Hisaab-ERP" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Code</a></div>
+          </div>
+          <h3>Hisaab</h3>
+          <p class="tagline">Billing, stock, money and GST for Indian shops: fast at the counter, honest in the books.</p>
+          <ul class="points">
+            <li>Keyboard-first billing with up to 9 open bills, UPI / split / <em>udhaar</em>, barcode and weighing-scale support.</li>
+            <li><strong>Double-entry books in whole paise</strong>; every voucher balances, every bill saves completely or not at all.</li>
+            <li>Counters bill offline and sync later; printer and scale calls run with deadlines so <strong>the counter never freezes</strong>.</li>
+            <li>GSTR-1, GSTR-3B, e-Way Bill, e-Invoice and one-click Tally XML export.</li>
+          </ul>
+          <div class="tags"><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Go</span><span class="tag">SQLite</span></div>
+        </article>
+
+        <!-- devloop -->
+        <article class="card feature reveal" data-tags="ai">
+          <div class="proj-top">
+            <span class="proj-kind">Agent tooling · plugins</span>
+            <div class="proj-links"><a href="https://github.com/SwayamGPT/devloop" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Code</a></div>
+          </div>
+          <h3>devloop</h3>
+          <p class="tagline">Four plugins that let Claude Code and Cursor see what their code actually does after it runs.</p>
+          <ul class="points">
+            <li><strong>live-api-monitor</strong>: live REST / WebSocket traffic and logs reach the agent, so 500s get fixed without a copy-paste.</li>
+            <li><strong>rag-orchestrator</strong>: inspects real embeddings and scores retrieval against a gold set.</li>
+            <li><strong>ci-autofixer</strong> catches cross-OS CI breakage before a push; <strong>stakeholder-ui</strong> enforces demo-ready frontends.</li>
+            <li>Zero npm dependencies, Node 22+.</li>
+          </ul>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">MCP</span><span class="tag">Hooks</span><span class="tag">Qdrant</span><span class="tag">MongoDB</span></div>
+        </article>
+
+        <!-- URL Health Monitor -->
+        <article class="card feature reveal" data-tags="ai product">
+          <div class="proj-top">
+            <span class="proj-kind">Full-stack · observability</span>
+            <div class="proj-links"><a href="https://github.com/SwayamGPT/url-health-monitor" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Code</a></div>
+          </div>
+          <h3>URL Health Monitor</h3>
+          <p class="tagline">Concurrent uptime monitoring with LLM incident analysis and natural-language search over history.</p>
+          <ul class="points">
+            <li>Async checks with <strong>asyncio + httpx</strong>: total time ≈ the slowest site, not the sum of all.</li>
+            <li>Ask "when did X go down last week and why?" via <strong>RAG on pgvector</strong>.</li>
+            <li>Short-lived JWT + rotating refresh tokens in httpOnly cookies; Redis sliding-window rate limits.</li>
+          </ul>
+          <div class="tags"><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">pgvector</span><span class="tag">Redis</span><span class="tag">React</span></div>
+        </article>
+
+        <!-- NIFTY50 Scout -->
+        <article class="card feature reveal" data-tags="data ai">
+          <div class="proj-top">
+            <span class="proj-kind">Quant screener</span>
+            <div class="proj-links"><a href="https://github.com/SwayamGPT/NIFTY50-Scout" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>Code</a></div>
+          </div>
+          <h3>NIFTY50 Scout</h3>
+          <p class="tagline">Scores NSE stocks 0–100 from trend, momentum, volume, drawdown and MACD rules.</p>
+          <ul class="points">
+            <li>Scans the <strong>whole NIFTY 500 in parallel</strong>, ranks sectors and builds a hit list.</li>
+            <li>Ships with a <strong>backtest</strong> that checks whether higher scores really led to better forward returns.</li>
+            <li>Optional LLM second opinion via OpenRouter; tested with synthetic prices, no network needed.</li>
+          </ul>
+          <div class="tags"><span class="tag">R</span><span class="tag">Shiny</span><span class="tag">testthat</span><span class="tag">OpenRouter</span></div>
+        </article>
+      </div>
+
+      <div class="more-head reveal">More projects</div>
+      <div class="grid">
+        <article class="card mini reveal" data-tags="desktop">
+          <a class="mini-link" href="https://github.com/SwayamGPT/teleprompter" target="_blank" rel="noopener" aria-label="Stealth Teleprompter on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Electron · Windows</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>Stealth Teleprompter</h4>
+          <p>A teleprompter you can see but screen recordings can't, using Windows display-affinity capture exclusion. Global hotkeys, mirror mode, click-through.</p>
+          <div class="tags"><span class="tag">Electron</span><span class="tag">Win32</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="ai">
+          <a class="mini-link" href="https://github.com/SwayamGPT/AnkiLearn" target="_blank" rel="noopener" aria-label="AnkiLearn on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Deep learning</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>AnkiLearn</h4>
+          <p>A 10.7M-parameter GPT trained from scratch on Tiny Shakespeare. Every piece, from tokenizer to attention, masking and AdamW, is annotated.</p>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="ai">
+          <a class="mini-link" href="https://github.com/SwayamGPT/pdf-rag-chatbot" target="_blank" rel="noopener" aria-label="PDF RAG Chatbot on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">RAG</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>PDF RAG Chatbot</h4>
+          <p>Chat with PDFs, images (OCR) and text. History-aware retrieval over FAISS with a local model and OpenRouter fallback.</p>
+          <div class="tags"><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">Streamlit</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="product data">
+          <a class="mini-link" href="https://github.com/SwayamGPT/FinAI" target="_blank" rel="noopener" aria-label="FinAI on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Fintech engine</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>FinAI</h4>
+          <p>A deterministic, liquidity-aware personal finance engine. Decimal-precise, explainable and designed so it can't give unsafe advice.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Decimal</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="desktop">
+          <a class="mini-link" href="https://github.com/SwayamGPT/tictactoe-global-multiplayer" target="_blank" rel="noopener" aria-label="TicTacToe Global Multiplayer on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Networked game</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>TicTacToe Multiplayer</h4>
+          <p>Client–server tic-tac-toe in modern C++ with a socket server for online matches.</p>
+          <div class="tags"><span class="tag">C++17</span><span class="tag">SFML</span><span class="tag">CMake</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="product">
+          <a class="mini-link" href="https://github.com/SwayamGPT/Solar-Management-App" target="_blank" rel="noopener" aria-label="Solar Manager on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">IoT dashboard</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>Solar Manager</h4>
+          <p>Raspberry Pi sensors stream voltage, smoke and temperature readings over MQTT to a React monitoring dashboard.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MQTT</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="product">
+          <a class="mini-link" href="https://github.com/SwayamGPT/Flask-auth-python" target="_blank" rel="noopener" aria-label="Flask Auth on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Auth</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>Flask JWT Auth</h4>
+          <p>Login with Google OAuth and JWT sessions, with a Flask API behind a React + Tailwind frontend.</p>
+          <div class="tags"><span class="tag">Flask</span><span class="tag">OAuth</span><span class="tag">React</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="data">
+          <a class="mini-link" href="https://github.com/SwayamGPT/Assessment" target="_blank" rel="noopener" aria-label="Python data tasks on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Data pipelines</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>API → SQLite toolkit</h4>
+          <p>Idempotent API ingestion, validated CSV imports with case-insensitive dedupe, and charted score analysis.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Matplotlib</span></div>
+        </article>
+        <article class="card mini reveal" data-tags="product">
+          <a class="mini-link" href="https://github.com/SwayamGPT?tab=repositories" target="_blank" rel="noopener" aria-label="All repositories on GitHub"></a>
+          <div class="proj-top"><span class="proj-kind">Archive</span><svg class="arrow"><use href="#i-arrow"/></svg></div>
+          <h4>Everything else</h4>
+          <p>Activity trackers, a JSP library system, early Hacktoberfest contributions and more experiments on GitHub.</p>
+          <div class="tags"><span class="tag">github.com/SwayamGPT</span></div>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <header>
-        <div class="fade-in-up">
-            <h1>Swayam Gupta</h1>
-            <p>&lt; <span id="typing-text"></span><span class="cursor"></span> /&gt;</p>
-            <div id="cmd-hint" style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); opacity: 0.7;">
-                Press <span
-                    style="border: 1px solid var(--text-muted); padding: 2px 5px; border-radius: 4px;">Ctrl</span> +
-                <span style="border: 1px solid var(--text-muted); padding: 2px 5px; border-radius: 4px;">K</span> to
-                start
-            </div>
+  <!-- EXPERIENCE -->
+  <section class="block" id="experience" aria-labelledby="xp-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">02 — Experience</div>
+          <h2 class="sec-title" id="xp-title">Where I've <span class="serif">worked</span></h2>
         </div>
-    </header>
-
-    <div class="container">
-
-        <section id="about" class="fade-in-up">
-            <h2>About</h2>
-            <div class="card">
-                <p>I am an AI Systems Engineer and BCA student at IGNOU. I specialize in building intelligent systems,
-                    full-stack applications, and scalable cloud architectures. Passionate about using tech for social
-                    impact through the Vrikshit Foundation.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="fade-in-up">
-            <h2>Tech Stack</h2>
-            <div class="card">
-                <div class="tech-radar-grid">
-                    <div class="radar-category">
-                        <h4>Working With</h4>
-                        <div class="radar-tags">
-                            <span class="radar-tag highlight">Python</span>
-                            <span class="radar-tag highlight">React</span>
-                            <span class="radar-tag highlight">Flask</span>
-                            <span class="radar-tag">LangChain</span>
-                            <span class="radar-tag">MongoDB</span>
-                        </div>
-                    </div>
-                    <div class="radar-category">
-                        <h4>Exploring</h4>
-                        <div class="radar-tags">
-                            <span class="radar-tag">OpenRouter</span>
-                            <span class="radar-tag">System Design</span>
-                            <span class="radar-tag">System Architectures</span>
-                            <span class="radar-tag">LLMs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="fade-in-up">
-            <h2>Experience</h2>
-            <div class="card">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="role-title">AI Systems Engineer</div>
-                        <div class="role-company">1Gen</div>
-                        <div class="role-date">Mar 2026 - Present</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="role-title">AI Engineer</div>
-                        <div class="role-company">1Gen</div>
-                        <div class="role-date">Jan 2026 - Mar 2026</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="role-title">Data Scientist Intern</div>
-                        <div class="role-company">1Gen</div>
-                        <div class="role-date">Aug 2025 - Dec 2025</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="role-title">Content Moderator</div>
-                        <div class="role-company">Krayonnz</div>
-                        <div class="role-date">Jun 2023 - Aug 2023</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="fade-in-up">
-            <h2>Projects</h2>
-            <div class="grid-2">
-                <div class="card project-card">
-                    <h3>Solar Manager</h3>
-                    <p class="project-desc">IoT dashboard for solar energy monitoring.</p>
-                    <span class="project-impact"><i class="fas fa-arrow-up"></i> Optimized energy efficiency by
-                        30%</span>
-                    <div class="tech-stack"><span class="tech-badge">React</span><span class="tech-badge">Node.js</span>
-                    </div>
-                    <a href="https://github.com/SwayamGPT/Solar-Management-App" class="project-link">GitHub <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card">
-                    <h3>JWT Auth System</h3>
-                    <p class="project-desc">Secure login with Google OAuth & JWT.</p>
-                    <span class="project-impact"><i class="fas fa-shield-alt"></i> Zero unauthorized access
-                        incidents</span>
-                    <div class="tech-stack"><span class="tech-badge">Flask</span><span class="tech-badge">React</span>
-                    </div>
-                    <a href="https://github.com/SwayamGPT/Flask-auth-python" class="project-link">GitHub <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card">
-                    <h3>RAG Chatbot</h3>
-                    <p class="project-desc">AI assistant for PDFs/Images.</p>
-                    <span class="project-impact"><i class="fas fa-bolt"></i> Instant document retrieval & Q&A</span>
-                    <div class="tech-stack"><span class="tech-badge">LangChain</span><span
-                            class="tech-badge">Streamlit</span></div>
-                    <a href="https://github.com/SwayamGPT/Chatbot" class="project-link">GitHub <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card">
-                    <h3>Nifty50 Scout</h3>
-                    <p class="project-desc">Stock scanner with AI risk validation.</p>
-                    <span class="project-impact"><i class="fas fa-chart-line"></i> Data-driven investment
-                        decisions</span>
-                    <div class="tech-stack"><span class="tech-badge">R Shiny</span><span
-                            class="tech-badge">LLaMA-3</span></div>
-                    <a href="https://github.com/SwayamGPT/NIFTY50-Scout" class="project-link">GitHub <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <div class="grid-2 fade-in-up">
-            <section style="margin: 0;">
-                <h2>Education</h2>
-                <div class="card">
-                    <ul class="compact-list">
-                        <li class="compact-item">
-                            <span style="font-weight: 600;">BCA (Pursuing)</span><br>
-                            <span style="color: var(--text-muted); font-size: 0.9rem;">IGNOU</span>
-                        </li>
-                        <li class="compact-item">
-                            <span style="font-weight: 600;">Senior Secondary (10+2)</span><br>
-                            <span style="color: var(--text-muted); font-size: 0.9rem;">NIOS</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <section style="margin: 0;">
-                <h2>Interests</h2>
-                <div class="card">
-                    <div style="margin-bottom: 15px;">
-                        <strong style="color: var(--primary);"><i class="fas fa-gamepad"></i> Gaming</strong>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Competitive FPS & Strategy.</p>
-                    </div>
-                    <div>
-                        <strong style="color: var(--secondary);"><i class="fas fa-music"></i> Music</strong>
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">Lo-Fi & Alt-Rock playlists.</p>
-                    </div>
-                </div>
-            </section>
+        <p class="sec-desc">Two promotions in seven months at 1Gen, from data science intern to owning AI systems end to end.</p>
+      </div>
+      <div class="xp">
+        <div class="xp-company reveal">
+          <div class="co-logo">1G</div>
+          <h3>1Gen</h3>
+          <p>Aug 2025 – Present</p>
         </div>
-
-        <section class="fade-in-up" style="text-align: center;">
-            <h2>Connect</h2>
-            <div class="social-links">
-                <a href="mailto:swayam7577@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/swayam-gupta-1781b7265/" class="social-btn"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/SwayamGPT" class="social-btn"><i class="fab fa-github"></i></a>
-            </div>
-        </section>
-
+        <div class="roles">
+          <div class="role current reveal">
+            <div class="role-head"><h4>AI Systems Engineer <span class="badge-now">NOW</span></h4><time>Mar 2026 – Present</time></div>
+            <p>Designing and running production AI systems: agent pipelines, retrieval and evaluation, and the infrastructure that keeps them reliable.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role-head"><h4>AI Engineer</h4><time>Jan 2026 – Mar 2026</time></div>
+            <p>Built LLM-powered features and RAG workflows, taking them from prototype to shipped.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role-head"><h4>Data Scientist Intern</h4><time>Aug 2025 – Dec 2025</time></div>
+            <p>Data analysis, modelling and dashboards supporting product and business decisions.</p>
+          </div>
+          <div class="role reveal">
+            <div class="role-head"><h4>Content Moderator <span class="org">· Krayonnz</span></h4><time>Jun 2023 – Aug 2023</time></div>
+            <p>Reviewed and moderated community content on an ed-tech platform.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 Swayam Gupta.</p>
-        <p class="footer-sig">Built with HTML • CSS • JS | Zero Frameworks</p>
-    </footer>
+  <!-- STACK -->
+  <section class="block" id="stack" aria-labelledby="stack-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">03 — Stack</div>
+          <h2 class="sec-title" id="stack-title">Tools I <span class="serif">reach for</span></h2>
+        </div>
+        <p class="sec-desc">Picked for the job rather than by habit. Most of it shows up in the repos above.</p>
+      </div>
+      <div class="stack">
+        <div class="card stack-col reveal">
+          <h4>AI / ML</h4>
+          <ul>
+            <li>LangChain <span>RAG</span></li>
+            <li>PyTorch <span>training</span></li>
+            <li>MCP · A2A <span>agents</span></li>
+            <li>Ollama · vLLM <span>local</span></li>
+            <li>OpenRouter <span>hosted</span></li>
+            <li>FAISS · pgvector <span>vectors</span></li>
+          </ul>
+        </div>
+        <div class="card stack-col reveal">
+          <h4>Backend</h4>
+          <ul>
+            <li>Python <span>FastAPI · Flask</span></li>
+            <li>Go <span>sync server</span></li>
+            <li>Node.js <span>tooling</span></li>
+            <li>PostgreSQL <span>async</span></li>
+            <li>SQLite · MongoDB</li>
+            <li>Redis <span>rate limits</span></li>
+          </ul>
+        </div>
+        <div class="card stack-col reveal">
+          <h4>Frontend & apps</h4>
+          <ul>
+            <li>React <span>Vite</span></li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS</li>
+            <li>Tauri <span>desktop</span></li>
+            <li>Electron <span>desktop</span></li>
+            <li>Streamlit · Shiny</li>
+          </ul>
+        </div>
+        <div class="card stack-col reveal">
+          <h4>Infra & data</h4>
+          <ul>
+            <li>Docker <span>compose</span></li>
+            <li>GitHub Actions <span>CI</span></li>
+            <li>Alembic <span>migrations</span></li>
+            <li>R <span>quant</span></li>
+            <li>Playwright · pytest</li>
+            <li>MQTT · Raspberry Pi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // 1. Reveal Animations with Cleanup (Memory Hygiene)
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    obs.unobserve(entry.target); // Stop watching once visible
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in-up').forEach((el) => observer.observe(el));
+  <!-- ABOUT -->
+  <section class="block" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">04 — About</div>
+          <h2 class="sec-title" id="about-title">A bit <span class="serif">more</span></h2>
+        </div>
+      </div>
+      <div class="about">
+        <div class="card about-main reveal">
+          <p>I'm <strong>Swayam</strong>, an AI Systems Engineer at 1Gen and a BCA student at IGNOU. I like the space where models meet messy reality: agents that have to prove their code works, retrieval that has to be measured instead of eyeballed, and software for shop counters where a frozen screen means a lost sale.</p>
+          <p>Most of what I build starts as "this should exist" and ends as something people can install. I write READMEs that explain the <em>why</em>, test with synthetic data so things run anywhere, and prefer deterministic logic wherever an LLM isn't needed.</p>
+          <p>Outside work I'm involved with the <strong>Vrikshit Foundation</strong>, using tech for social impact, and I spend downtime on competitive FPS and strategy games or a lo-fi / alt-rock playlist.</p>
+        </div>
+        <div class="about-side">
+          <div class="card info reveal">
+            <h4>Education</h4>
+            <div class="info-row"><span>BCA <span style="color:var(--text-3)">(pursuing)</span></span><span>IGNOU</span></div>
+            <div class="info-row"><span>Senior Secondary (10+2)</span><span>NIOS</span></div>
+          </div>
+          <div class="card info reveal">
+            <h4>Currently exploring</h4>
+            <div class="info-row"><span>Agent-to-agent protocols</span><span>A2A</span></div>
+            <div class="info-row"><span>Retrieval evaluation</span><span>gold sets</span></div>
+            <div class="info-row"><span>System design at scale</span><span>reading</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // 2. Theme Toggle
-        const toggleBtn = document.getElementById('theme-toggle');
-        const icon = toggleBtn.querySelector('i');
-        const body = document.body;
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="bg-grid" aria-hidden="true" style="top:auto;bottom:0;height:500px;mask-image:radial-gradient(ellipse 60% 70% at 50% 100%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 100%,#000 20%,transparent 70%)"></div>
+    <div class="wrap">
+      <div class="eyebrow reveal">05 — Contact</div>
+      <h2 class="reveal" id="contact-title" style="margin-top:14px">Let's build something <span class="serif">useful.</span></h2>
+      <p class="reveal">Hiring, collaborating, or curious about one of the projects? My inbox is open.</p>
+      <div class="cta-row reveal">
+        <a href="mailto:swayam7577@gmail.com" class="btn btn-primary"><svg><use href="#i-mail"/></svg>swayam7577@gmail.com</a>
+        <button class="btn copy-btn" id="copy-email" data-email="swayam7577@gmail.com"><svg><use href="#i-copy"/></svg><span class="idle">Copy email</span><span class="done">Copied ✓</span></button>
+        <a href="https://www.linkedin.com/in/swayam-gupta-1781b7265/" class="btn" target="_blank" rel="noopener"><svg><use href="#i-linkedin"/></svg>LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-        if (localStorage.getItem('theme') === 'light') {
-            body.setAttribute('data-theme', 'light');
-            icon.classList.replace('fa-moon', 'fa-sun');
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> Swayam Gupta · Hand-written HTML, CSS & JS. No frameworks.</span>
+    <div class="foot-links">
+      <a href="https://github.com/SwayamGPT" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/swayam-gupta-1781b7265/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Command palette -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu">
+  <div class="palette-box">
+    <div class="palette-input">
+      <svg><use href="#i-search"/></svg>
+      <input id="palette-search" type="text" placeholder="Jump to a section, project or link…" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list">
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette-list" id="palette-list" role="listbox"></ul>
+    <div class="palette-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  document.body.classList.remove('no-js');
+  var root = document.documentElement;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Platform-aware shortcut label
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  document.querySelectorAll('.mod-key').forEach(function (k) { k.textContent = isMac ? '⌘K' : 'Ctrl K'; });
+
+  // Theme
+  function currentTheme() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  function toggleTheme() {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  }
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+  // Nav border on scroll + active section
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  if ('IntersectionObserver' in window) {
+    var secObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
         }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['work', 'experience', 'stack', 'about', 'contact'].forEach(function (id) { secObs.observe(document.getElementById(id)); });
 
-        function toggleTheme() {
-            if (body.hasAttribute('data-theme')) {
-                body.removeAttribute('data-theme');
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'light');
-            }
-            closePalette();
-        }
-        toggleBtn.addEventListener('click', toggleTheme);
+    // Reveal on scroll
+    var revObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el, i) {
+      el.style.transitionDelay = (el.closest('.hero') ? i * 70 : 0) + 'ms';
+      revObs.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
 
-        // 3. Smart Typing Effect
-        const roles = ["AI Systems Engineer", "AI Engineer", "Data Scientist"];
-        const typingElement = document.getElementById("typing-text");
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+  // Spotlight hover on feature cards
+  document.querySelectorAll('.feature').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
 
-        function type() {
-            const currentRole = roles[roleIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
+  // Project filters
+  var chips = document.querySelectorAll('.chip');
+  var projects = document.querySelectorAll('#work [data-tags]');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.dataset.filter;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      projects.forEach(function (p) {
+        var show = f === 'all' || p.dataset.tags.split(' ').indexOf(f) !== -1;
+        p.classList.toggle('is-hidden', !show);
+        if (show) p.classList.add('in');
+      });
+      // Let the wide card span full width only when unfiltered
+      var wide = document.getElementById('p-autocode');
+      wide.classList.toggle('wide', f === 'all' || f === 'ai');
+    });
+  });
 
-            if (!isDeleting && charIndex === currentRole.length) {
-                isDeleting = true;
-                setTimeout(type, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 100 : 150);
-            }
-        }
-        document.addEventListener('DOMContentLoaded', type);
+  // Copy email
+  var copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', function () {
+    var email = copyBtn.dataset.email;
+    var done = function () { copyBtn.classList.add('copied'); setTimeout(function () { copyBtn.classList.remove('copied'); }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done, function () { window.location.href = 'mailto:' + email; });
+    } else { window.location.href = 'mailto:' + email; }
+  });
 
-        // 4. Pro Command Palette Logic (Focus Trap + Scroll Lock)
-        const palette = document.getElementById('cmd-palette');
+  // Command palette
+  var GH = 'https://github.com/SwayamGPT/';
+  var commands = [
+    { group: 'Sections', label: 'Selected work', icon: 'i-hash', run: go('work') },
+    { group: 'Sections', label: 'Experience', icon: 'i-hash', run: go('experience') },
+    { group: 'Sections', label: 'Stack', icon: 'i-hash', run: go('stack') },
+    { group: 'Sections', label: 'About', icon: 'i-hash', run: go('about') },
+    { group: 'Sections', label: 'Contact', icon: 'i-hash', run: go('contact') },
+    { group: 'Projects', label: 'AutoCode', hint: 'agent', icon: 'i-box', run: open(GH + 'AutoCode') },
+    { group: 'Projects', label: 'Hisaab ERP', hint: 'product', icon: 'i-box', run: open(GH + 'Hisaab-ERP') },
+    { group: 'Projects', label: 'devloop', hint: 'plugins', icon: 'i-box', run: open(GH + 'devloop') },
+    { group: 'Projects', label: 'URL Health Monitor', hint: 'full-stack', icon: 'i-box', run: open(GH + 'url-health-monitor') },
+    { group: 'Projects', label: 'NIFTY50 Scout', hint: 'quant', icon: 'i-box', run: open(GH + 'NIFTY50-Scout') },
+    { group: 'Projects', label: 'Stealth Teleprompter', hint: 'desktop', icon: 'i-box', run: open(GH + 'teleprompter') },
+    { group: 'Projects', label: 'AnkiLearn GPT', hint: 'ml', icon: 'i-box', run: open(GH + 'AnkiLearn') },
+    { group: 'Projects', label: 'PDF RAG Chatbot', hint: 'rag', icon: 'i-box', run: open(GH + 'pdf-rag-chatbot') },
+    { group: 'Links', label: 'GitHub profile', icon: 'i-github', run: open('https://github.com/SwayamGPT') },
+    { group: 'Links', label: 'LinkedIn', icon: 'i-linkedin', run: open('https://www.linkedin.com/in/swayam-gupta-1781b7265/') },
+    { group: 'Links', label: 'Send an email', icon: 'i-mail', run: function () { window.location.href = 'mailto:swayam7577@gmail.com'; } },
+    { group: 'Actions', label: 'Toggle light / dark theme', icon: 'i-sun', run: toggleTheme },
+    { group: 'Actions', label: 'Copy email address', icon: 'i-copy', run: function () { copyBtn.click(); } }
+  ];
+  function go(id) { return function () { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }; }
+  function open(url) { return function () { window.open(url, '_blank', 'noopener'); }; }
 
-        function openPalette() {
-            palette.style.display = 'flex';
-            palette.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('palette-open'); // Scroll Lock
-            // Focus Trap: Focus the first item
-            const firstItem = palette.querySelector('.cmd-item');
-            if (firstItem) firstItem.focus();
-        }
+  var palette = document.getElementById('palette');
+  var input = document.getElementById('palette-search');
+  var list = document.getElementById('palette-list');
+  var filtered = commands, sel = 0, lastFocus = null;
 
-        function closePalette() {
-            palette.style.display = 'none';
-            palette.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('palette-open'); // Release Scroll
-        }
-
-        document.addEventListener('keydown', (e) => {
-            // Open with Ctrl+K
-            if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
-                e.preventDefault();
-                openPalette();
-            }
-            // Close with Esc
-            if (e.key === 'Escape') closePalette();
-
-            // Shortcut keys when palette is OPEN
-            if (palette.style.display === 'flex') {
-                const key = e.key.toLowerCase();
-                if (key === 'p') scrollToSection('projects');
-                if (key === 'e') scrollToSection('experience');
-                if (key === 'g') window.open('https://github.com/SwayamGPT', '_blank');
-                if (key === 't') toggleTheme();
-            }
-        });
-
-        palette.addEventListener('click', (e) => {
-            if (e.target === palette) closePalette();
-        });
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            closePalette();
-        }
-
-        // 5. Optimized Particles (Disabled on Mobile)
-        const isMobile = window.innerWidth < 768;
-        if (!isMobile && typeof particlesJS !== 'undefined') {
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": { "value": 50 },
-                    "color": { "value": "#38bdf8" },
-                    "opacity": { "value": 0.3 },
-                    "size": { "value": 3 },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.2, "width": 1 },
-                    "move": { "enable": true, "speed": 1 }
-                },
-                "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
-            });
-        }
-    </script>
+  function render() {
+    var q = input.value.trim().toLowerCase();
+    filtered = commands.filter(function (c) { return !q || (c.label + ' ' + c.group + ' ' + (c.hint || '')).toLowerCase().indexOf(q) !== -1; });
+    if (sel >= filtered.length) sel = Math.max(0, filtered.length - 1);
+    list.innerHTML = '';
+    if (!filtered.length) { list.innerHTML = '<li class="palette-empty">No results for “' + q.replace(/[<>&"]/g, '') + '”</li>'; return; }
+    var group = null;
+    filtered.forEach(function (c, i) {
+      if (c.group !== group) {
+        group = c.group;
+        var g = document.createElement('li'); g.className = 'palette-group'; g.setAttribute('role', 'presentation'); g.textContent = group; list.appendChild(g);
+      }
+      var li = document.createElement('li');
+      li.className = 'palette-item'; li.id = 'cmd-' + i; li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', String(i === sel));
+      li.innerHTML = '<svg><use href="#' + c.icon + '"/></svg><span></span>' + (c.hint ? '<span class="hint"></span>' : '');
+      li.children[1].textContent = c.label;
+      if (c.hint) li.children[2].textContent = c.hint;
+      li.addEventListener('mousemove', function () { if (sel !== i) { sel = i; mark(); } });
+      li.addEventListener('click', function () { exec(i); });
+      list.appendChild(li);
+    });
+    input.setAttribute('aria-activedescendant', 'cmd-' + sel);
+  }
+  function mark() {
+    list.querySelectorAll('.palette-item').forEach(function (el) {
+      var on = el.id === 'cmd-' + sel;
+      el.setAttribute('aria-selected', String(on));
+      if (on) el.scrollIntoView({ block: 'nearest' });
+    });
+    input.setAttribute('aria-activedescendant', 'cmd-' + sel);
+  }
+  function exec(i) { var c = filtered[i]; if (!c) return; closePalette(); c.run(); }
+  function openPalette() {
+    lastFocus = document.activeElement;
+    palette.classList.add('open'); document.body.classList.add('locked');
+    input.value = ''; sel = 0; render(); input.focus();
+  }
+  function closePalette() {
+    palette.classList.remove('open'); document.body.classList.remove('locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.getElementById('open-palette').addEventListener('click', openPalette);
+  palette.addEventListener('click', function (e) { if (e.target === palette) closePalette(); });
+  input.addEventListener('input', function () { sel = 0; render(); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(1, filtered.length); mark(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + filtered.length) % Math.max(1, filtered.length); mark(); }
+    else if (e.key === 'Enter') { e.preventDefault(); exec(sel); }
+    else if (e.key === 'Tab') { e.preventDefault(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    var typing = /INPUT|TEXTAREA/.test((e.target && e.target.tagName) || '');
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault(); palette.classList.contains('open') ? closePalette() : openPalette();
+    } else if (e.key === 'Escape' && palette.classList.contains('open')) {
+      closePalette();
+    } else if (e.key === '/' && !typing && !palette.classList.contains('open')) {
+      e.preventDefault(); openPalette();
+    }
+  });
+})();
+</script>
 </body>
-
 </html>

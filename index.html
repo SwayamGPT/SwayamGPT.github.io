@@ -130,19 +130,6 @@
   .nav.scrolled { border-bottom-color: var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
-  .brand-mark {
-    position: relative; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
-    background: linear-gradient(150deg, var(--text) 0%, color-mix(in srgb, var(--text) 78%, var(--accent)) 100%);
-    color: var(--bg); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 6px 16px -8px var(--accent);
-    font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 21px; line-height: 1; letter-spacing: -0.06em;
-    transition: transform .35s cubic-bezier(.2,.8,.2,1.4), box-shadow .3s ease;
-  }
-  .brand-mark span { transform: translate(-1px, 1px); }
-  .brand-mark::after {
-    content: ''; position: absolute; right: -2px; bottom: -2px; width: 9px; height: 9px; border-radius: 50%;
-    background: var(--accent); border: 2px solid var(--bg);
-  }
-  .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.06); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 22px -8px var(--accent); }
   .brand-name { display: flex; flex-direction: column; line-height: 1.15; }
   .brand-name small { font-family: 'Geist Mono', monospace; font-weight: 400; font-size: 11px; color: var(--text-3); letter-spacing: 0; }
   @media (max-width: 420px) { .brand-name small { display: none; } }
@@ -446,7 +433,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand" aria-label="Swayam Gupta, back to top"><span class="brand-mark" aria-hidden="true"><span>sg</span></span><span class="brand-name">Swayam Gupta<small>AI Systems Engineer</small></span></a>
+    <a href="#top" class="brand" aria-label="Swayam Gupta, back to top"><span class="brand-name">Swayam Gupta<small>AI Systems Engineer</small></span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>

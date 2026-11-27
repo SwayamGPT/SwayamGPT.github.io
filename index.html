@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swayam Gupta — AI Systems Engineer</title>
-<meta name="description" content="Swayam Gupta is an AI Systems Engineer at 1Gen building coding agents, RAG pipelines and offline-first full-stack products.">
+<meta name="description" content="Swayam Gupta is an AI Systems Engineer building coding agents, RAG pipelines and offline-first full-stack products.">
 <meta name="author" content="Swayam Gupta">
 <meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://swayamgpt.github.io/">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ececea'/%3E%3Cstop offset='1' stop-color='%23bfe9da'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='30' y='44' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' letter-spacing='-3' fill='%230a0b0d'%3Esg%3C/text%3E%3Ccircle cx='53' cy='53' r='7' fill='%2334d3a6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0b0d'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='700' font-size='28' fill='%2334d3a6'%3ESG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -33,7 +33,6 @@
   "@type": "Person",
   "name": "Swayam Gupta",
   "jobTitle": "AI Systems Engineer",
-  "worksFor": { "@type": "Organization", "name": "1Gen" },
   "url": "https://swayamgpt.github.io/",
   "sameAs": ["https://github.com/SwayamGPT", "https://www.linkedin.com/in/swayam-gupta-1781b7265/"]
 }
@@ -130,19 +129,6 @@
   .nav.scrolled { border-bottom-color: var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
-  .brand-mark {
-    position: relative; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
-    background: linear-gradient(150deg, var(--text) 0%, color-mix(in srgb, var(--text) 78%, var(--accent)) 100%);
-    color: var(--bg); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 6px 16px -8px var(--accent);
-    font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 21px; line-height: 1; letter-spacing: -0.06em;
-    transition: transform .35s cubic-bezier(.2,.8,.2,1.4), box-shadow .3s ease;
-  }
-  .brand-mark span { transform: translate(-1px, 1px); }
-  .brand-mark::after {
-    content: ''; position: absolute; right: -2px; bottom: -2px; width: 9px; height: 9px; border-radius: 50%;
-    background: var(--accent); border: 2px solid var(--bg);
-  }
-  .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.06); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 22px -8px var(--accent); }
   .brand-name { display: flex; flex-direction: column; line-height: 1.15; }
   .brand-name small { font-family: 'Geist Mono', monospace; font-weight: 400; font-size: 11px; color: var(--text-3); letter-spacing: 0; }
   @media (max-width: 420px) { .brand-name small { display: none; } }
@@ -446,7 +432,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand" aria-label="Swayam Gupta, back to top"><span class="brand-mark" aria-hidden="true"><span>sg</span></span><span class="brand-name">Swayam Gupta<small>AI Systems Engineer</small></span></a>
+    <a href="#top" class="brand" aria-label="Swayam Gupta, back to top"><span class="brand-name">Swayam Gupta<small>AI Systems Engineer</small></span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
@@ -473,7 +459,7 @@
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="bg-glow" aria-hidden="true"></div>
     <div class="wrap">
-      <span class="status reveal"><span class="pulse" aria-hidden="true"></span>AI Systems Engineer at 1Gen</span>
+      <a href="#contact" class="status reveal"><span class="pulse" aria-hidden="true"></span>Open to opportunities</a>
       <h1 class="reveal">I build AI systems that <span class="serif">actually ship.</span></h1>
       <p class="hero-sub reveal">
         Coding agents that test their own output, RAG pipelines you can measure, and offline-first
@@ -487,7 +473,7 @@
       </div>
 
       <div class="hero-meta reveal" role="list">
-        <div class="meta-cell" role="listitem"><div class="meta-label">Now</div><div class="meta-value">AI Systems Eng. <span class="dim">· 1Gen</span></div></div>
+        <div class="meta-cell" role="listitem"><div class="meta-label">Latest</div><div class="meta-value">AI Systems Eng. <span class="dim">· 1Gen</span></div></div>
         <div class="meta-cell" role="listitem"><div class="meta-label">Focus</div><div class="meta-value">Agents · RAG · LLMOps</div></div>
         <div class="meta-cell" role="listitem"><div class="meta-label">Languages</div><div class="meta-value">Python · TS · Go · R</div></div>
         <div class="meta-cell" role="listitem"><div class="meta-label">Open source</div><div class="meta-value">20+ public repos</div></div>
@@ -697,9 +683,9 @@
           <p>Aug 2025 – Oct 2026</p>
         </div>
         <div class="roles">
-          <div class="role current reveal">
-            <div class="role-head"><h4>AI Systems Engineer <span class="badge-now">NOW</span></h4><time>Mar 2026 – Oct 2026</time></div>
-            <p>Designing and running production AI systems: agent pipelines, retrieval and evaluation, and the infrastructure that keeps them reliable.</p>
+          <div class="role reveal">
+            <div class="role-head"><h4>AI Systems Engineer</h4><time>Mar 2026 – Oct 2026</time></div>
+            <p>Designed and ran production AI systems: agent pipelines, retrieval and evaluation, and the infrastructure that kept them reliable.</p>
           </div>
           <div class="role reveal">
             <div class="role-head"><h4>AI Engineer</h4><time>Jan 2026 – Mar 2026</time></div>
@@ -708,10 +694,6 @@
           <div class="role reveal">
             <div class="role-head"><h4>Data Scientist Intern</h4><time>Aug 2025 – Dec 2025</time></div>
             <p>Data analysis, modelling and dashboards supporting product and business decisions.</p>
-          </div>
-          <div class="role reveal">
-            <div class="role-head"><h4>Content Moderator <span class="org">· Krayonnz</span></h4><time>Jun 2023 – Aug 2023</time></div>
-            <p>Reviewed and moderated community content on an ed-tech platform.</p>
           </div>
         </div>
       </div>
@@ -788,7 +770,7 @@
       </div>
       <div class="about">
         <div class="card about-main reveal">
-          <p>I'm <strong>Swayam</strong>, an AI Systems Engineer at 1Gen and a BCA student at IGNOU. I like the space where models meet messy reality: agents that have to prove their code works, retrieval that has to be measured instead of eyeballed, and software for shop counters where a frozen screen means a lost sale.</p>
+          <p>I'm <strong>Swayam</strong>, an AI Systems Engineer and a BCA student at IGNOU. Most recently I spent 14 months at 1Gen, going from data science intern to AI Systems Engineer. I like the space where models meet messy reality: agents that have to prove their code works, retrieval that has to be measured instead of eyeballed, and software for shop counters where a frozen screen means a lost sale.</p>
           <p>Most of what I build starts as "this should exist" and ends as something people can install. I write READMEs that explain the <em>why</em>, test with synthetic data so things run anywhere, and prefer deterministic logic wherever an LLM isn't needed.</p>
           <p>Outside work I'm involved with the <strong>Vrikshit Foundation</strong>, using tech for social impact, and I spend downtime on competitive FPS and strategy games or a lo-fi / alt-rock playlist.</p>
         </div>
